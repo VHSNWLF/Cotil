@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <script>
+        function exibirSenha(){
+            if(document.querySelector("#pwd").getAttribute("type") == "password"){
+                document.getElementById('pwd').setAttribute('type', 'text');
+            }
+        }
+    </script>
+
+</head>
+<body>
+    Login:
+    <br>
+    <input type="text" size="30">
+    <br><br>
+    Senha:
+    <br>
+    <input type="password" id="pwd">
+    <small id="exibicao" onclick="exibirSenha();">Exibir senha</small>
+    <input type="checkbox" id="exibicao" onclick="exibirSenha();">
+    <br><br>
+    <button>OK</button>
+</body>
+</html>

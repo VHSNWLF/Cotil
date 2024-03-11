@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado</title>
+
+    <script>
+        function gerarCidades(){
+            var cidadeSP = ["Limeira","Campinas","Valinhos"]
+            var cidadeMG = ["Varginha","Belo Horizonte","Mantimento"]
+            var cidadeRJ = ["Rio de Janeiro","Niterói","Angra dos Reis"]
+
+            var estado = document.getElementById("estado").value
+
+//-----------------------------------------------------------------------------------------------------//
+            
+            if(estado == ""){
+                limpaCombo()
+            }
+
+            if(estado == "SP"){
+                limpaCombo()
+                alimentaCombo(cidadeSP)
+            }
+
+            if(estado == "MG"){
+                limpaCombo()
+                alimentaCombo(cidadeMG)
+            }
+
+            if(estado == "RJ"){
+                limpaCombo()
+                alimentaCombo(cidadeRJ)
+            }
+        }
+
+        function limpaCombo(){
+            var comboCidades = document.getElementById("cidade")
+
+            while(comboCidades.length){
+                comboCidades.remove(0)
+            }
+        }
+
+        function alimentaCombo(cidades){
+            var cidade = document.getElementById("cidade")
+            var option = ""
+            option = document.createElement("option")
+            cidade.add(option)
+            for(let i = 0; i<cidades.length; i++){
+                option = document.createElement("option")
+                option.value = i
+                option.text = cidades[i]
+                cidade.add(option)
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <form action="">
+        <select id="estado" onchange="gerarCidades()">
+            <option value="" selected></option>
+            <option value="SP">SP</option>
+            <option value="MG">MG</option>
+            <option value="RJ">RJ</option>
+        </select>
+
+        <br><br>
+        Cidade:<br>
+        <select id="cidade"></select>
+    </form>
+</body>
+</html>

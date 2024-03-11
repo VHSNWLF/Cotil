@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação</title>
+
+    <style>
+        body{
+            font: normal 15pt Arial;
+        }
+    </style>
+
+
+<script>
+
+    function enviarDados(){
+        if((document.dados.radio.value == "PF") && (document.dados.txtNome.value == "" || document.dados.txtNome.value.length < 8)){
+            formataMsg("Preencha campo NOME corretamente!")
+            document.dados.txtNome.focus()
+            return false
+        }
+
+        if((document.dados.radio.value == "PJ") && (document.dados.txtRazao.value == "" || document.dados.txtRazao.value.length < 8)){
+            formataMsg("Preencha campo RAZÃO SOCIAL corretamente!")
+            document.dados.txtRazao.focus()
+            return false
+        }
+        if (document.dados.txtEmail.value == ""){
+            formataMsg("Preencha o campo EMAIL!");
+            return false
+        }
+        if (document.dados.txtMensagem.value == ""){
+            formataMsg("Preencha o campo MENSAGEM!");
+            return false
+        }
+        if (document.dados.txtMensagem.value.lenght < 50){
+            formataMsg("É necessario preencher o campo MENSAGEM com mais de 50 caracteres!");
+            document.dados.txtMensagem.focus()
+            return false
+        }
+        return true
+    }
+        
+        function formataMsg(textoMsg) {
+            document.getElementById('msg').style.color = 'red'
+            document.getElementById('msg').textContent = textoMsg
+        }
+        
+    function verificaTipo (tipo){
+        if(tipo=="PF"){
+            // document.getElementById("formCpf").style.display = "inline";
+            // document.getElementById("formCnpj").style.display = "none";
+
+            //desabilitando o razao social e cnpj
+            document.getElementById("cnpj").disabled = true;
+            document.getElementById("rSocial").disabled = true;
+
+            document.getElementById("cnpj").style.backgroundColor = "lightgray";
+            document.getElementById("rSocial").style.backgroundColor = "lightgray";
+
+            //habilitando o cpf e o nome
+            document.getElementById("cpf").disabled = false;
+            document.getElementById("nome").disabled = false;
+
+            document.getElementById("cpf").style.backgroundColor = "white";
+            document.getElementById("nome").style.backgroundColor = "white";
+
+        }
+        else if(tipo=="PJ"){
+            /* document.getElementById("formCnpj").style.display = "inline";
+            document.getElementById("formCpf").style.display = "none"; */
+
+            //habilitando o razao social e cnpj
+            document.getElementById("cnpj").disabled = false;
+            document.getElementById("rSocial").disabled = false;
+
+            document.getElementById("cnpj").style.backgroundColor = "white";
+            document.getElementById("rSocial").style.backgroundColor = "white";
+
+            //desabilitando o cpf e o nome
+            document.getElementById("cpf").disabled = true;
+            document.getElementById("nome").disabled = true;
+
+            document.getElementById("cpf").style.backgroundColor = "lightgray";
+            document.getElementById("nome").style.backgroundColor = "lightgray";
+        }
+    }
+
+</script>
+</head>
+<body>
+    <header>
+        <h1>titulo</h1>
+    </header>
+    
+        
+        <span id="msg"></span>
+
+        <form name="dados" id="dados" onsubmit="return enviarDados();">
+            <label for="PF">Pessoa Fisica</label>
+            <input type="radio" name="radio" value="PF" id="PF" onclick="verificaTipo(this.value)">
+            
+            <label for="">Pessoa Juridica</label>
+            <input type="radio" name="radio" value="PJ" id="PJ" onclick="verificaTipo(this.value)">
+        
+        <br><br>
+
+        <div id="formCpf">
+            CPF: <br>
+            <input type="text" name="txtCpf" id="cpf"><br><br>
+            Nome Completo: <br>
+            <input type="text" name="txtNome" id="nome" size="52">
+        </div>
+        <br><br>
+
+        <div id="formCnpj">
+            CNPJ: <br>
+            <input type="text" name="txtCnpj" size="52" id="cnpj"><br><br>
+            Razão Social: <br>
+            <input type="text" name="txtRazao" id="rSocial" size="52">
+        </div>
+        <br><br>
+
+        
+            Email:
+            <br>
+            <input type="text" name="txtEmail" id="email" size="52" maxlength="50">
+        
+        <br><br>
+
+        
+            Mensagem:
+            <br>
+            <textarea name="txtMensagem" id="mensagem" cols="53" rows="10"></textarea>
+        <br><br>
+
+        
+            <input name="Submit" type="submit" value="Enviar Dados">
+
+            <input name="Reset" type="reset" value="Redefinir">
+    </form>
+</body>
+</html>

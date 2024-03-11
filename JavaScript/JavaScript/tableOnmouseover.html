@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+
+    <style>
+        img{
+            height: 200px;
+            width: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <img id="imagem" src="https://cdn-icons-png.flaticon.com/512/919/919827.png" alt="" onmouseover= "trocarImagem()";
+    onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/919/919827.png'"> 
+
+    <script>
+        function trocarImagem(){
+            document.getElementById('imagem').setAttribute('src', 'https://cdn-icons-png.flaticon.com/512/919/919826.png')
+        }
+// -> HTML
+// -> CSS
+
+    </script>
+</body>
+</html>
