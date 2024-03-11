@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script>
+        function cadastrarCurso(){
+            //criando um objeto com duas propriedades
+            var curso = {
+                sigla: document.getElementById("sigla").value,
+                nome: document.getElementById("nome").value
+            }
+
+            var tabela = document.getElementById("tabelaCursos")
+
+            var novaLinha = document.createElement("tr")
+            novaLinha.insertCell(0).innerHTML = curso.sigla
+            novaLinha.insertCell(1).innerHTML = curso.nome
+            tabela.appendChild(novaLinha)
+
+            document.getElementById("sigla").value = ""
+            document.getElementById("nome").value = ""
+        }
+    </script>
+
 </head>
 <body>
 
@@ -22,7 +43,7 @@
     <hr>
     <h2>Cursos Cadastrados</h2>
 
-    <table border="1" ondblclick="tabelaCursos" width="30%">
+    <table border="1" id="tabelaCursos" width="30%">
         	<tr>
                 <th>Sigla</th>
                 <th>Nome</th>
