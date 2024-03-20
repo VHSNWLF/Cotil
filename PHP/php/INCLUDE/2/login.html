@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Acadêmico</title>
+</head>
+<body>
+    <h1>Sistema Acadêmico</h1>
+    <hr>
+    <form method="POST">
+        <label for="login">Login</label> <br>
+        <input type="text" name="login" id="login" required> <br> <br>
+        <label for="senha">Senha</label> <br>
+        <input type="password" name="senha" id="senha" required> <br> <br>
+        <input type="submit" value="ENTRAR">
+    </form>
+    <hr>
+
+    <?php
+        if($pagina != ""){
+            include $pagina;
+        }
+    ?>
+</body>
+</html>
