@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:flutter_all_mobile_applications/InputDados/Basico/inputDados.dart';
 import 'package:flutter_all_mobile_applications/about-me.dart';
 import 'package:flutter_all_mobile_applications/dispositivoConectado.dart';
 import 'package:flutter_all_mobile_applications/vetor/vetor.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyVetor(),
+      home: InputDados(),
     );
   }
 }
