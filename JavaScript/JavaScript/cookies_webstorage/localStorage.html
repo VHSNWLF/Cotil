@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+
+    <script>
+        function identificaAluno(){
+            var obj = localStorage.getItem("ra");
+
+            if (obj!= null){
+                document.getElementById("textoRA").innerText = obj;
+            }else{
+                documen.getElementById("textoRA").innerText = "";
+            }
+        }
+
+        function ler(){
+            if(localStorage.ra != null)
+            alert("O RA gravado é "+ localStorage.ra)
+            else
+            alert("Sem RA")
+        }
+
+        function gravar(){
+            localStorage.ra = document.getElementById("RA").value
+            alert("RA gravado com sucesso!")
+        }
+
+        function remover(){
+                localStorage.removeItem('ra')
+                alert("RA removido com sucesso")
+                
+        }
+
+    </script>
+
+</head>
+<body onload="identificaAluno()">
+    <h1>Local Storage</h1>
+
+    Olá <span id="textoRA"></span>
+
+    <form action="">
+        <label for="RA">RA:</label> <br>
+        <input type="text" name="RA" id="RA">
+        <input type="submit" value="Gravar" onclick="gravar()">
+
+        <hr>
+
+        <input type="button" value="Ler RA" onclick="ler()">
+        <input type="button" value="Remover RA" onclick="remover()">
+
+        <hr>
+    </form>
+
+
+</body>
+</html>
