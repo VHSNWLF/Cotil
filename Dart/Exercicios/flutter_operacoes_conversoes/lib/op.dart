@@ -50,7 +50,11 @@ class _Operations2State extends State<Operations2> {
                 ),
               labelText: "Digite o valor 1",
               filled: true, 
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: Colors.blue)), // Cor da borda quando não em foco
             ),
+            
           ),
 
           SizedBox(height: 20,),
@@ -65,6 +69,10 @@ class _Operations2State extends State<Operations2> {
                 ),
               labelText: "Digite o valor 2",
               filled: true, 
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: Colors.blue)
+              )
             ),
           ),
 
@@ -139,12 +147,14 @@ class _Operations2State extends State<Operations2> {
             ),),
           ],),
           
+          SizedBox(height: 20,),
+
           Text("Resultado: " + resultado, style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),),
 
-          
+
         ]),
       ),
     ));
