@@ -1,8 +1,9 @@
-// ignore_for_file: unused_import, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_vetor/fraseAleatoria.dart';
-import 'package:flutter_application_vetor/vetor.dart';
+import 'package:flutter_all_mobile_applications/about-me.dart';
+import 'package:flutter_all_mobile_applications/dispositivoConectado.dart';
+import 'package:flutter_all_mobile_applications/vetor/vetor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: RandomTexts(),
+      home: MyVetor(),
     );
   }
 }
