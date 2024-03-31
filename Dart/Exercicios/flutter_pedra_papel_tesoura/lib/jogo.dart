@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class GameJokenpo extends StatefulWidget {
@@ -14,9 +16,10 @@ class _GameJokenpoState extends State<GameJokenpo> {
   final imgPedra = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/papel.png"),);
   final imgPapel = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/papel.png"),);
   final imgTesoura = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/tesoura.png"),);
-  final pedra = SizedBox(height: 100, width: 100, child: Text("Pedra"),);
-  final papel = SizedBox(height: 100, width: 100, child: Text("Papel"),);
-  final tesoura = SizedBox(height: 100, width: 100, child: Text("Tesoura"),);
+  final pedra = SizedBox(height: 50, width: 100, child: Text("Pedra"),);
+  final papel = SizedBox(height: 50, width: 100, child: Text("Papel"),);
+  final tesoura = SizedBox(height: 50, width: 100, child: Text("Tesoura"),);
+  String result = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +38,47 @@ class _GameJokenpoState extends State<GameJokenpo> {
         ),),
 
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          
-          imgPedra,
+          GestureDetector(
+            child: imgPedra,
+            onTap: () {
+              int opc = Random().nextInt(3);
+              if(opc == 1){
+                result = "EMPATE. O computador escolheu Pedra";
+              }else if(opc == 2){
+                result = "PERDEU. O computador escolheu  Papel";
+              }else{
+                result = "VENCEU. O computador escolheu Tesoura";
+              } setState(() {});
+            },
+          ),
 
-          imgPapel,
+          GestureDetector(
+            child: imgPapel,
+            onTap: () {
+              int opc = Random().nextInt(3);
+              if(opc == 1){
+                result = "VENCEU. O computador escolheu Pedra";
+              }else if(opc == 2){
+                result = "EMPATE. O computador escolheu  Papel";
+              }else{
+                result = "PERDEU. O computador escolheu Tesoura";
+              } setState(() {});
+            },
+          ),
 
-          imgTesoura,
+          GestureDetector(
+            child: imgTesoura,
+            onTap: () {
+              int opc = Random().nextInt(3);
+              if(opc == 1){
+                result = "PERDEU. O computador escolheu Pedra";
+              }else if(opc == 2){
+                result = "VENCEU. O computador escolheu  Papel";
+              }else{
+                result = "EMPATE. O computador escolheu Tesoura";
+              } setState(() {});
+            },
+          ),
 
         ],),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -49,6 +87,7 @@ class _GameJokenpoState extends State<GameJokenpo> {
           papel,
           tesoura,
         ],),
+        Text(result),
 
       ]),)),
     );
