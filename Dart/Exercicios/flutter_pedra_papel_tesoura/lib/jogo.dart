@@ -49,6 +49,10 @@ class _GameJokenpoState extends State<GameJokenpo> {
               }else{
                 result = "VENCEU. O computador escolheu Tesoura";
               } setState(() {});
+              Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+                result = '';
+                setState(() {});
+              },);
             },
           ),
 
@@ -63,6 +67,10 @@ class _GameJokenpoState extends State<GameJokenpo> {
               }else{
                 result = "PERDEU. O computador escolheu Tesoura";
               } setState(() {});
+              Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+                result = '';
+                setState(() {});
+              },);
             },
           ),
 
@@ -77,6 +85,10 @@ class _GameJokenpoState extends State<GameJokenpo> {
               }else{
                 result = "EMPATE. O computador escolheu Tesoura";
               } setState(() {});
+              Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+                result = '';
+                setState(() {});
+              },);
             },
           ),
 
