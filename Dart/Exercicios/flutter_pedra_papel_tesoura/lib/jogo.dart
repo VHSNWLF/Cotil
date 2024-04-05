@@ -13,13 +13,17 @@ class GameJokenpo extends StatefulWidget {
 
 class _GameJokenpoState extends State<GameJokenpo> {
 
-  final imgPedra = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/papel.png"),);
+  final imgPedra = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/pedra.png"),);
   final imgPapel = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/papel.png"),);
   final imgTesoura = SizedBox(height: 100, width: 100, child: Image.asset("assets/images/tesoura.png"),);
   final pedra = SizedBox(height: 50, width: 100, child: Text("Pedra"),);
   final papel = SizedBox(height: 50, width: 100, child: Text("Papel"),);
   final tesoura = SizedBox(height: 50, width: 100, child: Text("Tesoura"),);
+  Text result2 = Text("");
   String result = "";
+  Widget escolhaIA = SizedBox.shrink();
+  SizedBox imageR = SizedBox(height: 50, width: 100, child: Image.asset(""));
+  
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +37,10 @@ class _GameJokenpoState extends State<GameJokenpo> {
       body: SingleChildScrollView(child: Container(child: Column(children: [
         SizedBox(height: 20,),
 
+        result2,
+        
+        escolhaIA,
+
         Text("Escolha Pedra, Papel ou Tesoura", style: TextStyle(
           fontSize: 20,
         ),),
@@ -43,14 +51,22 @@ class _GameJokenpoState extends State<GameJokenpo> {
             onTap: () {
               int opc = Random().nextInt(3);
               if(opc == 1){
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/pedra.png"));
                 result = "EMPATE. O computador escolheu Pedra";
               }else if(opc == 2){
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/papel.png")) ;
                 result = "PERDEU. O computador escolheu  Papel";
               }else{
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/tesoura.png"));
                 result = "VENCEU. O computador escolheu Tesoura";
               } setState(() {});
-              Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+              Future.delayed(Duration(seconds: 4, milliseconds: 500), () {
                 result = '';
+                result2 = Text("");
+                escolhaIA = Text("");
                 setState(() {});
               },);
             },
@@ -61,14 +77,22 @@ class _GameJokenpoState extends State<GameJokenpo> {
             onTap: () {
               int opc = Random().nextInt(3);
               if(opc == 1){
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/pedra.png"));
                 result = "VENCEU. O computador escolheu Pedra";
               }else if(opc == 2){
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/papel.png"));
                 result = "EMPATE. O computador escolheu  Papel";
               }else{
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/tesoura.png"));
                 result = "PERDEU. O computador escolheu Tesoura";
               } setState(() {});
-              Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+              Future.delayed(Duration(seconds: 4, milliseconds: 500), () {
                 result = '';
+                result2 = Text("");
+                escolhaIA = Text("");
                 setState(() {});
               },);
             },
@@ -79,14 +103,22 @@ class _GameJokenpoState extends State<GameJokenpo> {
             onTap: () {
               int opc = Random().nextInt(3);
               if(opc == 1){
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/pedra.png"));
                 result = "PERDEU. O computador escolheu Pedra";
               }else if(opc == 2){
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/papel.png"));
                 result = "VENCEU. O computador escolheu  Papel";
               }else{
+                result2 = Text("Escolha do App");
+                escolhaIA = SizedBox(height: 50, width: 100, child: Image.asset("assets/images/tesoura.png"));
                 result = "EMPATE. O computador escolheu Tesoura";
               } setState(() {});
-              Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+              Future.delayed(Duration(seconds: 4, milliseconds: 500), () {
                 result = '';
+                result2 = Text("");
+                escolhaIA = Text("");
                 setState(() {});
               },);
             },
