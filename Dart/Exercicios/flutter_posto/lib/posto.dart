@@ -1,64 +1,74 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 
-class MyPosto extends StatefulWidget {
-  const MyPosto({super.key});
+
+class Myposto extends StatefulWidget {
+  const Myposto({super.key});
+
 
   @override
-  State<MyPosto> createState() => _MyPostoState();
+  State<Myposto> createState() => _MypostoState();
 }
 
-class _MyPostoState extends State<MyPosto> {
-  final imagePosto = SizedBox(height: 80, width: 80, child: Image.asset("assets/images/bomba-de-gasolina.png"),);
-  TextEditingController controladorTexto1 = TextEditingController();
-  TextEditingController controladorTexto2 = TextEditingController();
-  String valor1 = "";
-  String valor2 = "";
+
+class _MypostoState extends State<Myposto> {
+
+
+  final postoimg = SizedBox(height: 200, width: 200, child: Image.asset("assets/images/bomba-de-gasolina.png"),);
+  TextEditingController alcoolController = TextEditingController();
+  TextEditingController gasosaController = TextEditingController();
+  String resultado = "";
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Álcool ou Gasolina", style: TextStyle(
-          fontSize: 20,
-        ),),
-        backgroundColor: Colors.greenAccent.shade200,
+      appBar:
+       AppBar(
         centerTitle: true,
-      ),
+        backgroundColor: const Color.fromARGB(255, 180, 100, 194),
+        title: Text("Álcool ou gasolina", style: TextStyle(color: Colors.white),
+        ),),
 
-      body: SingleChildScrollView(child: Center(child: Column(children: [
-        
-        SizedBox(height: 30,),
-        imagePosto,
-        SizedBox(height: 30,),
 
+      body: Center(child: Column(children: [
+        SizedBox(height: 20,),
+        postoimg,
+        SizedBox(height: 10,),
         TextField(
-          controller: controladorTexto1,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: Colors.greenAccent.shade200)),
-              labelText: "Digite o preço do sla oq",
-              prefixIcon: Icon(Icons.abc),
-          ),
+          controller: alcoolController,
+          decoration: InputDecoration(labelText: "Digite o preço do litro do álcool: "),
         ),
-
-        SizedBox(height: 40,),
-
+        SizedBox(height: 10,),
         TextField(
-          controller: controladorTexto2,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: Colors.greenAccent.shade200)),
-              labelText: "Digite o preço do sla oq2",
-              prefixIcon: Icon(Icons.abc),
-          ),
+          controller: gasosaController,
+          decoration: InputDecoration(labelText: "Digite o preço do litro da gasolina: "),
         ),
+        SizedBox(height: 10,),
 
 
-      ],)),),
+        ElevatedButton(onPressed: () {
+          calcula();
+          setState(() {});
+        }, child: Text("Calcular")),
+        SizedBox(height: 10,),
+        Text("O melhor a se usar é: " + resultado),
+      ],)),
     );
   }
+
+
+  void calcula(){
+    double alcool = double.parse(alcoolController.text);
+    double gasosa = double.parse(gasosaController.text);
+    double conta = alcool/gasosa;
+
+
+    if(conta < 0.7){
+      resultado = "álcool!";
+    }
+    else{
+     resultado = "gasolina!";
+    }
+  }
 }
+
