@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post" action="cookies.php">
+    <form method="post">
         Nome: <br>
         <input type="text" name="nome" size="30">
 
