@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_interpolation_to_compose_strings, avoid_print, dead_code
 
 import 'package:flutter/material.dart';
 import 'package:flutter_forms/cadastro.dart';
@@ -11,15 +11,19 @@ class MyForms extends StatefulWidget {
 }
 
 class _MyFormsState extends State<MyForms> {
-  final imagem = SizedBox(height: 100, width: 100, child: Image.asset(""),);
+  final imagem = SizedBox(height: 200, width: 200, child: Image.asset("assets/images/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_(1)_3xti.png"));
   String curso = "";
+  String nome = "";
+  String email = "";
   bool a1 = false;
   bool a2 = false;
   bool a3 = false;
   bool permitirNot = false;
   List<String> interesse = [];
+  List<Pessoa> listaPessoa = [];
   TextEditingController controladorTexto = TextEditingController();
-  Pessoa p = Pessoa.v();
+  TextEditingController controladorTexto2 = TextEditingController();
+  //Pessoa p = Pessoa.v();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +46,8 @@ class _MyFormsState extends State<MyForms> {
           child:TextField(
           controller: controladorTexto,
           onChanged: (value) {
-            print("Nome: "+value);
+            nome = value;
+            //p.setNome = value;
             setState(() {
             });
           },
@@ -58,9 +63,10 @@ class _MyFormsState extends State<MyForms> {
         Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 30.0), // Defina o padding desejado aqui
           child: TextField(
-          controller: controladorTexto,
+          controller: controladorTexto2,
           onChanged: (value) {
-            print("Email: "+value);
+            email = value;
+            //p.setEmail = value;
           },
           decoration: InputDecoration(
             filled: true,
@@ -81,6 +87,7 @@ class _MyFormsState extends State<MyForms> {
             groupValue: curso,
             onChanged: (value) {
               curso = value!;
+              //p.setCurso = curso;
               setState(() {});              
             },
           ),
@@ -91,6 +98,7 @@ class _MyFormsState extends State<MyForms> {
             groupValue: curso,
             onChanged: (value) {
               curso = value!; 
+              //p.setCurso = curso;
               setState(() {});             
             },
           ), 
@@ -105,8 +113,9 @@ Divider(thickness: 1, color: Colors.black,),
           value: a1,
           onChanged: (value) {
             a1 = value!;
-            if (a3 == true){
+            if (a1 == true){
               interesse.add("Escrita cientifíca");
+              //p.setInteresses = interesse;
             }
             setState(() {});
           },
@@ -117,9 +126,11 @@ Divider(thickness: 1, color: Colors.black,),
           value: a2,
           onChanged: (value) {
             a2 = value!;
-            if (a3 == true){
+            if (a2 == true){
               interesse.add("Literatura Africana");
+              //p.setInteresses = interesse;
             }
+
             setState(() {});
           },
           ),
@@ -131,6 +142,7 @@ Divider(thickness: 1, color: Colors.black,),
             a3 = value!;
             if (a3 == true){
               interesse.add("Artes");
+              //p.setInteresses = interesse;
             }
             setState(() {});
           },
@@ -142,6 +154,7 @@ Divider(thickness: 1, color: Colors.black,),
             value: permitirNot,
             onChanged: (value) {
               permitirNot = value;
+              //p.setReceberNot = permitirNot;
               setState(() {});
             },
             ),
@@ -150,9 +163,17 @@ Divider(thickness: 1, color: Colors.black,),
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 30.0), // Defina o padding desejado aqui
           child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
             ElevatedButton(onPressed: () {
-            setState(() {
-              
-            });
+              Pessoa p = Pessoa(nome, email, curso, interesse, permitirNot);
+              listaPessoa.add(p);
+              interesse = [];
+              /* print("Nome: "+p.getNome);
+              print("Email: "+p.getEmail);
+              print("Tipo de Curso: "+p.getCurso);
+              for(int i=0; i<p.getInteresses.length; i++){
+                print("Interesse: "+p.getInteresses[i]);
+              }
+              print("Receber Notificações: "+p.getReceberNot.toString()); */
+            setState(() {});
           }, child: Text("Enviar", style: TextStyle(
             color: Colors.white,
           ),),
@@ -163,6 +184,13 @@ Divider(thickness: 1, color: Colors.black,),
           SizedBox(width: 30,),
 
             ElevatedButton(onPressed: () {
+              permitirNot = false;
+              a1 = false;
+              a2 = false;
+              a3 = false;
+              curso = "";
+              controladorTexto = TextEditingController();
+              controladorTexto2 = TextEditingController();
             setState(() {});
           }, child: Text("Cancelar", style: TextStyle(
             color: Colors.white,
@@ -173,7 +201,34 @@ Divider(thickness: 1, color: Colors.black,),
           ],)
         ),
 
-      ],),),),
+          ElevatedButton(onPressed: () {
+            mostrar();
+            setState(() {});
+          }, child: Text("Mostrar", style: TextStyle(
+            color: Colors.white,
+          ),),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+          ),),
+
+
+      ],
+      ),
+      ),
+      ),
     );
   }
+  void mostrar(){
+      listaPessoa.forEach((Pessoa p) {
+        print("Nome: "+p.getNome);
+        print("Email: "+p.getEmail);
+        print("Tipo de Curso: "+p.getCurso);
+        for(int i=0; i<p.getInteresses.length; i++){
+          print("Interesse: "+p.getInteresses[i]);
+        }
+        print("Receber Notificações: "+p.getReceberNot.toString());
+        print('-------------------------------------');
+      });
+      print('============================================');
+    }
 }

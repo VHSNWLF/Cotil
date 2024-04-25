@@ -3,9 +3,10 @@ class Pessoa{
   String email = "";
   String curso = "";
   List<String> interesses = [];
- 
   bool receberNot = false;
+  
   Pessoa.v();
+  Pessoa.n(this.nome);
   Pessoa(this.nome, this.email, this.curso, this.interesses, this.receberNot);
 
 
