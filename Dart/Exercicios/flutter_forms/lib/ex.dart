@@ -11,7 +11,7 @@ class MyForms extends StatefulWidget {
 }
 
 class _MyFormsState extends State<MyForms> {
-  final imagem = SizedBox(height: 200, width: 200, child: Image.asset("assets/images/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_(1)_3xti.png"));
+  final imagem = SizedBox(height: 200, width: 400, child: Image.asset("assets/images/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_(1)_3xti.png"));
   String curso = "";
   String nome = "";
   String email = "";
@@ -166,6 +166,10 @@ Divider(thickness: 1, color: Colors.black,),
               Pessoa p = Pessoa(nome, email, curso, interesse, permitirNot);
               listaPessoa.add(p);
               interesse = [];
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Pessoa cadastrada com sucesso!"))
+              );
+              limpaDados();
               /* print("Nome: "+p.getNome);
               print("Email: "+p.getEmail);
               print("Tipo de Curso: "+p.getCurso);
@@ -184,13 +188,7 @@ Divider(thickness: 1, color: Colors.black,),
           SizedBox(width: 30,),
 
             ElevatedButton(onPressed: () {
-              permitirNot = false;
-              a1 = false;
-              a2 = false;
-              a3 = false;
-              curso = "";
-              controladorTexto = TextEditingController();
-              controladorTexto2 = TextEditingController();
+              limpaDados();
             setState(() {});
           }, child: Text("Cancelar", style: TextStyle(
             color: Colors.white,
@@ -231,4 +229,14 @@ Divider(thickness: 1, color: Colors.black,),
       });
       print('============================================');
     }
+
+  void limpaDados(){
+    permitirNot = false;
+    a1 = false;
+    a2 = false;
+    a3 = false;
+    curso = "";
+    controladorTexto = TextEditingController();
+    controladorTexto2 = TextEditingController();
+  }
 }
