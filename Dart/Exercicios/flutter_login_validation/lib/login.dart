@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_import
 
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_login_validation/homePage.dart';
+import 'package:flutter_login_validation/usuario.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
@@ -15,9 +17,11 @@ class MyLogin extends StatefulWidget {
 class _MyLoginState extends State<MyLogin> {
 
   Image imagem = Image.asset("assets/images/undraw_Security_on_re_e491.png", width: 200, height: 200,);
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> validationKey = GlobalKey();
+  Usuario u = Usuario.v();
+  Usuario u1 = Usuario('Vitor', "123");
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +49,9 @@ class _MyLoginState extends State<MyLogin> {
           Form(
             key: validationKey,
             child: Column(children: [
+
               TextFormField(
-                controller: nameController,
+                controller: usernameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -63,7 +68,8 @@ class _MyLoginState extends State<MyLogin> {
               SizedBox(height: 30,),
 
               TextFormField(
-                controller: passController,
+                controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -72,6 +78,8 @@ class _MyLoginState extends State<MyLogin> {
                   validator: (value) {
                     if(value!.isEmpty){
                       return "A senha não pode estar vazio!";
+                    }else if(value!.length < 3){
+                      return "A senha deve ter no minímo 3 caracteres";
                     }
                     return null;
                   },
@@ -81,13 +89,30 @@ class _MyLoginState extends State<MyLogin> {
 
               ElevatedButton(onPressed: () {
                 if(validationKey.currentState!.validate()){
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Sucesso!"))
-                  );
-
+                  if(usernameController.text == u1.getUsername && passwordController.text == u1.getPassword){
+                    Navigator.pushReplacement(
+                      context,MaterialPageRoute(builder: (context) => myHomePage()),
+                    );
+                  }else{
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Dados incorretos'),
+                          content: Text('Usuario e/ou senha estão incorretos'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('Fechar'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
                   setState(() {
-                    
                   });
                 }
               }, child: Text("Entrar", style: TextStyle(
@@ -98,6 +123,7 @@ class _MyLoginState extends State<MyLogin> {
                 backgroundColor: Colors.deepPurpleAccent,
                 minimumSize: Size(double.infinity, 50)
               ),)
+
             ],)
             )
         ],),
