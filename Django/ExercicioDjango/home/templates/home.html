@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        h1{
+           text-align: center; 
+        }
+        .links{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            justify-content: center;
+        }        
+        a{
+            text-decoration: none;
+            color: black;
+            width: 100px;
+            height: 50px;
+            font-weight: bold;
+            border: 2px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+        }
+        body{
+            background-image: url('um-fundo-vermelho-e-preto-com-um-fundo-preto-e-um-redemoinho-vermelho.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <h1>Home</h1>
+    <div class="links">
+        <a href="http://127.0.0.1:8000/engenharia">Engenharia</a>
+        <a href="http://127.0.0.1:8000/controle">Controle de Qualidade</a>
+        <a href="http://127.0.0.1:8000/expedicao">Expedição</a>
+        <a href="http://127.0.0.1:8000/producao">Produção</a>
+    </div>
+</body>
+</html>
