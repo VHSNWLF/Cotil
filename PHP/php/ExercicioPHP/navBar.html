@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavBar</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-right: 1rem;
+        }
+        .btn{
+            border: 2px solid black;
+            text-decoration: none;
+            color: black;
+            font-size: 15px;
+            padding: 2px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info">
+            <div><strong>Nome:</strong> <?=$nome?></div>
+            <div><strong>Senha:</strong> <?=$senha?></div>
+        </div>
+        <form action="">
+            <a href="logout.php"  class="btn">SAIR</a>
+        </form>
+    </div>
+</body>
+</html>
