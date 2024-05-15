@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_projeto_com_navigation/info.dart';
 import 'package:flutter_application_projeto_com_navigation/principal.dart';
 
 void main() {
@@ -20,7 +21,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Principal(),
+      //home: Principal(),
+      routes: {
+        '/':(context) => Principal(),
+        '/info':(context) => Info("#","#","#"),
+
+      },
     );
   }
 }

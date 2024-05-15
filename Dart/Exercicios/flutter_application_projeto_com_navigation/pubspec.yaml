@@ -60,8 +60,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets\images\wp2600449.webp
-    - assets\images\triangulo-4_xl.jpeg
+    - assets\images\background.png
+    - assets\images\triangulo.png
     - assets\images\kisspng-circle-drawing-clip-art-circle-5abaf919bfb1e0.8638367715222029057852.png
     - assets\images\Ícone-Varinha-Harry-Potter-PNG.png
 
@@ -80,6 +80,9 @@ flutter:
     - family: HARRYP__
       fonts:
         - asset: assets\fonts\HARRYP__.TTF
+    - family: Long Today
+      fonts:
+        - asset: assets\fonts\Long Today.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
