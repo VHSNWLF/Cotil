@@ -64,6 +64,7 @@ flutter:
     - assets\images\triangulo.png
     - assets\images\kisspng-circle-drawing-clip-art-circle-5abaf919bfb1e0.8638367715222029057852.png
     - assets\images\Ícone-Varinha-Harry-Potter-PNG.png
+    - assets\images\bckgrndBlack.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

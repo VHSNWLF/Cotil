@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_projeto_com_navigation/info.dart';
+import 'package:flutter_application_projeto_com_navigation/livros.dart';
 import 'package:flutter_application_projeto_com_navigation/principal.dart';
 
 void main() {
@@ -24,8 +25,7 @@ class MyApp extends StatelessWidget {
       //home: Principal(),
       routes: {
         '/':(context) => Principal(),
-        '/info':(context) => Info("#","#","#"),
-
+        '/Livros':(context) => Livros(),
       },
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_projeto_com_navigation/info.dart';
+import 'package:flutter_application_projeto_com_navigation/objetos.dart';
 
 class Principal extends StatefulWidget {
   const Principal({super.key});
@@ -11,6 +12,8 @@ class Principal extends StatefulWidget {
 }
 
 class _PrincipalState extends State<Principal> {
+
+  Objetos obj = Objetos.n();
 
   final appBarTitle = Text("Harry Potter", style: TextStyle(
           color: Colors.black,
@@ -61,13 +64,19 @@ class _PrincipalState extends State<Principal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.pushNamed(context, "/Livros");
+          }, icon: Icon(Icons.bookmark, color: Colors.redAccent,),
+          ),
+        ],
         title: appBarTitle,
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
 
-      body: Container(
-        height: double.infinity,
+      body: SingleChildScrollView(child: Container(
+        height: 720,
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -76,7 +85,7 @@ class _PrincipalState extends State<Principal> {
           )
         ),
         child: Column(children: [
-          SizedBox(height: 600,),
+          SizedBox(height: 400,),
 
           Text('RELIQUIAS DA MORTE', style: TextStyle(
             fontSize: 40,
@@ -104,7 +113,7 @@ class _PrincipalState extends State<Principal> {
                     child: imgVarinha,
                     onTap: () {
                       Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Info('Varinha das Varinhas', 'Varinha foda', 'Morte'),)
+                      MaterialPageRoute(builder: (context) => Info('Varinha das Varinhas', 'Varinha foda', 'Morte',obj.getListaObjetos),)
                       );
                     },
                   ),
@@ -115,7 +124,7 @@ class _PrincipalState extends State<Principal> {
                     child: imgPedra,
                     onTap: () {
                       Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Info('Pedra da Resurreicao', 'Pedra que "revive" os mortos', 'Morte'),)
+                      MaterialPageRoute(builder: (context) => Info('Pedra da Resurreicao', 'Pedra que "revive" os mortos', 'Morte',obj.getListaObjetos),)
                       );
                     },
                   ),
@@ -126,7 +135,7 @@ class _PrincipalState extends State<Principal> {
                     child: imgCapa,
                     onTap: () {
                       Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Info('Capa da Invisibilidade', 'Capa capaz de tornar seu portador completamente invisivel', 'Morte'),)
+                      MaterialPageRoute(builder: (context) => Info('Capa da Invisibilidade', 'Capa capaz de tornar seu portador completamente invisivel', 'Morte',obj.getListaObjetos),)
                       );
                     },
                   ),
@@ -150,6 +159,6 @@ class _PrincipalState extends State<Principal> {
           
         ],),
       ),
-    );
+    ));
   }
 }
