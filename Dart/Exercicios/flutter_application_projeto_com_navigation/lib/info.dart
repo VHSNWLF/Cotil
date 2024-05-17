@@ -25,7 +25,7 @@ class _InfoState extends State<Info> {
         title: Text("RELIQUIAS DA MORTE", style: TextStyle(
           color: Colors.black,
           fontFamily: "HARRYP__",
-          fontSize: 50,
+          fontSize: 30,
           shadows: [
             Shadow(
               color: Colors.redAccent.shade700,

@@ -36,7 +36,7 @@ class _PrincipalState extends State<Principal> {
 
 
 
-  final txtCapa = SizedBox(height: 100, width: 100, child: Text('Capa da Invisibilidade', style: TextStyle(
+  final txtCapa = SizedBox( width: 100, child: Text('Capa da Invisibilidade', style: TextStyle(
     fontSize: 20,
     color: Colors.white60,
     fontWeight: FontWeight.bold,
@@ -45,13 +45,13 @@ class _PrincipalState extends State<Principal> {
   textAlign: TextAlign.center,
   ),
   ); 
-  final txtVarinha = SizedBox(height: 100, width: 100, child: Text('Varinha das Varinhas', style: TextStyle(
+  final txtVarinha = SizedBox( width: 100, child: Text('Varinha das Varinhas', style: TextStyle(
     fontSize: 20,
     fontFamily: 'Long Today',
     color: Colors.white60,
     fontWeight: FontWeight.bold
   ),textAlign: TextAlign.center,),);
-  final txtPedra= SizedBox(height: 100, width: 100, child: Text('Pedra da Resurreição', style: TextStyle(
+  final txtPedra= SizedBox( width: 100, child: Text('Pedra da Resurreição', style: TextStyle(
     fontSize: 20,
     fontFamily: 'Long Today',
     color: Colors.white60,
@@ -75,8 +75,8 @@ class _PrincipalState extends State<Principal> {
         backgroundColor: Colors.black,
       ),
 
-      body: SingleChildScrollView(child: Container(
-        height: 720,
+      body:  Container(
+        height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -85,7 +85,7 @@ class _PrincipalState extends State<Principal> {
           )
         ),
         child: Column(children: [
-          SizedBox(height: 400,),
+          SizedBox(height: 450,),
 
           Text('RELIQUIAS DA MORTE', style: TextStyle(
             fontSize: 40,
@@ -99,8 +99,6 @@ class _PrincipalState extends State<Principal> {
             )
           ]
           ),),
-          
-          SizedBox(height: 20,),
 
           Container(
             padding: EdgeInsets.fromLTRB(40, 0, 20, 10),
@@ -147,7 +145,7 @@ class _PrincipalState extends State<Principal> {
 
           
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 20, 0),
+            padding: EdgeInsets.fromLTRB(30, 0, 20, 0),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             txtVarinha,
             txtPedra,
@@ -159,6 +157,6 @@ class _PrincipalState extends State<Principal> {
           
         ],),
       ),
-    ));
+    );
   }
 }
