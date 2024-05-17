@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -53,7 +53,20 @@ class _LivroIndivState extends State<LivroIndiv> {
           Text(widget.sinopse, style: TextStyle(
             color: Colors.white,
             fontSize: 20,
-          ),))
+          ),)),
+          SizedBox(height: 20,),
+          ElevatedButton(onPressed: () {
+          Navigator.pop(context);
+        },
+         child: Text("Voltar", style: TextStyle(color: Colors.white),),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+              side: BorderSide(color: Colors.white)
+            )
+          ),
+        )
         ])
         )
     );
