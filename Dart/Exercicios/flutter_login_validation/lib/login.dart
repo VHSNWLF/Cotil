@@ -56,7 +56,8 @@ class _MyLoginState extends State<MyLogin> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  labelText: "Nome do Usuário"),
+                  labelText: "Nome do Usuário"
+                  ),
                   validator: (value) {
                     if(value!.isEmpty){
                       return "O nome não pode estar vazio!";
