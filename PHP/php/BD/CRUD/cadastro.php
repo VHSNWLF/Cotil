@@ -15,13 +15,25 @@
             display: flex;
             flex-direction: column;
         }
+        #error{
+            color: red;
+            font-weight: bold;
+        }
+        #warning{
+            color: orange;
+            font-weight: bold;
+        }
+        #success{
+            color: green;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <a href="index.php">Home</a>
     <div>
     <h2>Cadastro de Alunos</h2>
-    <form action="" method="POST">
+    <form method="POST">
         <label for="ra">RA</label>
         <input type="text" name="ra" id="ra" size="10">
         <label for="nome">Nome</label>
@@ -37,6 +49,7 @@
             <option value="Qualidade">Qualidade</option>
         </select> <br> <br>
         <input type="submit" value="Cadastrar">
+        <?=$msg?>
     </form>
     </div>
 </body>
@@ -44,7 +57,12 @@
 
 <?php
 
-if($_SERVER['REQUEST_METHOD'] === "POST"){
+if($_SERVER['REQUEST_METHOD'] === "GET"){
+    $msg = "";
+}
+else if($_SERVER['REQUEST_METHOD'] === "POST"){
+    $msg = "";
+    
     try{
         $ra = $_POST['ra'];
         $nome = $_POST['nome'];
@@ -78,6 +96,6 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     catch(PDOException $e){
         echo "Erro ao conectar ao banco de dados: " . $e->getMessage();
     }
-} 
+}
 
 ?>
