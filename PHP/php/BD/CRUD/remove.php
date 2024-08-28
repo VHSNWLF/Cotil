@@ -28,7 +28,7 @@ if(!isset($_GET['raAluno'])){
         $stmt = $pdo->prepare('delete from alunos where ra = :ra');
         $stmt->bindParam(':ra', $ra);
         $stmt->execute();
-        echo $stmt->rowCount() . " aluno de RA $ra removido!";
+        echo $stmt->rowCount() ." aluno de RA $ra removido!";
     }catch(PDOException $e){
         echo "Error: ".$e->getMessage();
     }
