@@ -1,3 +1,47 @@
+<?php
+if($_SERVER['REQUEST_METHOD'] === "GET"){
+    $msg = "";
+}
+else if($_SERVER['REQUEST_METHOD'] === "POST"){
+    $msg = "";
+    
+    try{
+        $ra = $_POST['ra'];
+        $nome = $_POST['nome'];
+        $curso = $_POST['curso'];
+
+        if((trim($ra) == "") || (trim($nome)) == ""){
+            $msg = "<span id='warning'>RA e nome são obrigatórios!</span>";
+        }else{
+            include("conexaoBD.php");
+            
+            //Verificando se o RA ja existe no BD para não dar exceptions
+            $stmt = $pdo->prepare("select * from alunos where ra = :ra");
+            $stmt->bindParam(':ra', $ra);
+            $stmt->execute();
+
+            $rows = $stmt->rowCount();
+
+            if($rows <=0){
+                $stmt = $pdo->prepare("insert into alunos (ra, nome, curso) values (:ra, :nome, :curso)");
+                $stmt->bindParam(':ra', $ra);
+                $stmt->bindParam(':nome', $nome);
+                $stmt->bindParam(':curso', $curso);
+                $stmt->execute();
+
+                $msg = "<span id='success'>Aluno Cadastrado ocm sucesso!</span>";
+            }else{
+                $msg = "<span id 'error'>Ra já existente no banco de dados!</span>";
+            }
+        }
+    }
+    catch(PDOException $e){
+        $msg = "Erro ao conectar ao banco de dados: " . $e->getMessage();
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,14 +60,20 @@
             flex-direction: column;
         }
         #error{
+            text-align: center;
+            padding-top: 5px;
             color: red;
             font-weight: bold;
         }
         #warning{
+            text-align: center;
+            padding-top: 5px;
             color: orange;
             font-weight: bold;
         }
         #success{
+            text-align: center;
+            padding-top: 5px;
             color: green;
             font-weight: bold;
         }
@@ -55,47 +105,3 @@
 </body>
 </html>
 
-<?php
-
-if($_SERVER['REQUEST_METHOD'] === "GET"){
-    $msg = "";
-}
-else if($_SERVER['REQUEST_METHOD'] === "POST"){
-    $msg = "";
-    
-    try{
-        $ra = $_POST['ra'];
-        $nome = $_POST['nome'];
-        $curso = $_POST['curso'];
-
-        if((trim($ra) == "") || (trim($nome)) == ""){
-            echo "<span id='warning'>RA e nome são obrigatórios!</span>";
-        }else{
-            include("conexaoBD.php");
-            
-            //Verificando se o RA ja existe no BD para não dar exceptions
-            $stmt = $pdo->prepare("select * from alunos where ra = :ra");
-            $stmt->bindParam(':ra', $ra);
-            $stmt->execute();
-
-            $rows = $stmt->rowCount();
-
-            if($rows <=0){
-                $stmt = $pdo->prepare("insert into alunos (ra, nome, curso) values (:ra, :nome, :curso)");
-                $stmt->bindParam(':ra', $ra);
-                $stmt->bindParam(':nome', $nome);
-                $stmt->bindParam(':curso', $curso);
-                $stmt->execute();
-
-                echo "<span id='success'>Aluno Cadastrado ocm sucesso!</span>";
-            }else{
-                echo "<span id 'error'>Ra já existente no banco de dados!</span>";
-            }
-        }
-    }
-    catch(PDOException $e){
-        echo "Erro ao conectar ao banco de dados: " . $e->getMessage();
-    }
-}
-
-?>
