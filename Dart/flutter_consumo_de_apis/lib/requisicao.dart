@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class MyRequisicao extends StatefulWidget {
   const MyRequisicao({super.key});
@@ -11,7 +12,10 @@ class MyRequisicao extends StatefulWidget {
 }
 
 class _MyRequisicaoState extends State<MyRequisicao> {
-  String dadosAPI = "teste";
+  var userID;
+  var taskID;
+  var title;
+  var completed;
   TextEditingController cont = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -31,18 +35,22 @@ class _MyRequisicaoState extends State<MyRequisicao> {
               SizedBox(
                 height: 30,
               ),
-              Text(dadosAPI),
               SizedBox(
                 height: 30,
               ),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Form(
                     child: Column(
                       children: [
                         TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "Id da tarefa",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)
+                            )
+                          ),
                           controller: cont,
-                          
                         ),
                       ],
                     ),
@@ -51,10 +59,18 @@ class _MyRequisicaoState extends State<MyRequisicao> {
                 height: 30,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    fazerReq(cont.text);
-                  },
-                  child: Text("Fazer Requisição"))
+                onPressed: () {
+                  fazerReq(cont.text);
+                },
+                child: Text("Fazer Requisição"),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text("ID do usuário: " + userID.toString()),
+              Text("ID da tarefa: " + taskID.toString()),
+              Text("Titulo da tarefa: " + title.toString()),
+              Text("Completa? " + completed.toString()),
             ],
           ),
         ),
@@ -66,7 +82,14 @@ class _MyRequisicaoState extends State<MyRequisicao> {
     var url = Uri.parse("https://jsonplaceholder.typicode.com/todos/${x}");
     http.Response response;
     response = await http.get(url);
-    dadosAPI = response.body;
-    setState(() {});
+    if (response.statusCode == 200) {
+      Map<String, dynamic> dadosFormatados = jsonDecode(response.body);
+      userID = (dadosFormatados['userId']);
+      taskID = (dadosFormatados['id']);
+      title = (dadosFormatados['title']);
+      completed = (dadosFormatados['completed']);
+
+      setState(() {});
+    }
   }
 }
