@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, sort_child_properties_last, prefer_typing_uninitialized_variables, unused_local_variable, unnecessary_brace_in_string_interps, unused_import
 
 import 'dart:io';
 
@@ -18,6 +18,27 @@ class _MeuAppState extends State<MeuApp> {
   List<String> listaFilmes = [];
   String opcao = "";
   var name;
+  String atb1 = "";
+  String atb2 = "";
+  String atb3 = "";
+  String atb4 = "";
+  String atb5 = "";
+
+  var nome;
+  var altura;
+  var genero;
+  var corOlhos;
+  var corCabelo;
+
+  var clima;
+  var terreno;
+  var diametro;
+  var populacao;
+
+  var modelo;
+  var tamanho;
+  var capacidade;
+  var nPassageiros;
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +122,37 @@ class _MeuAppState extends State<MeuApp> {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {
-
+                if (opcao == "Pessoa") {
+                  fazerReqPessoa(cont.text);
+                  atb1 = "Nome: " + nome.toString();
+                  atb2 = "Altura: " + altura.toString();
+                  atb3 = "Genero: " + genero.toString();
+                  atb4 = "Cor do Cabelo: " + corCabelo.toString();
+                  atb5 = "Cor dos Olhos: " + corOlhos.toString();
+                } else if (opcao == "Planeta") {
+                  fazerReqPlaneta(cont.text);
+                  atb1 = "Nome: " + nome.toString();
+                  atb2 = "Clima: " + clima.toString();
+                  atb3 = "Terreno: " + terreno.toString();
+                  atb4 = "Diametro: " + diametro.toString();
+                  atb5 = "População: " + populacao.toString();
+                } else {
+                  fazerReqStarships(cont.text);
+                  atb1 = "Nome: " + nome.toString();
+                  atb2 = "Modelo: " + modelo.toString();
+                  atb3 = "Tamanho: " + tamanho.toString();
+                  atb4 = "Capacidade: " + capacidade.toString();
+                  atb5 = "Número de Passageiros: " + nPassageiros.toString();
+                }
                 setState(() {});
               },
               child: Text(
@@ -120,11 +164,14 @@ class _MeuAppState extends State<MeuApp> {
                   backgroundColor: Colors.black,
                   side: BorderSide(color: Colors.black, width: 2)),
             ),
-            opcao == "Pessoa" ? () {
-
-            } : opcao == "Planeta" ?(){
-
-            } //ERROR
+            SizedBox(
+              height: 20,
+            ),
+            Text(atb1),
+            Text(atb2),
+            Text(atb3),
+            Text(atb4),
+            Text(atb5),
           ],
         ),
       ),
@@ -132,11 +179,6 @@ class _MeuAppState extends State<MeuApp> {
   }
 
   Future<void> fazerReqPessoa(String x) async {
-    var nome;
-    var altura;
-    var genero;
-    var corOlhos;
-    var corCabelo;
     var url = Uri.parse('https://swapi.dev/api/people/${x}/');
     http.Response response;
     response = await http.get(url);
@@ -152,11 +194,6 @@ class _MeuAppState extends State<MeuApp> {
   }
 
   Future<void> fazerReqPlaneta(String x) async {
-    var nome;
-    var clima;
-    var terreno;
-    var diametro;
-    var populacao;
     var url = Uri.parse('https://swapi.dev/api/planets/${x}/');
     http.Response response;
     response = await http.get(url);
@@ -173,11 +210,7 @@ class _MeuAppState extends State<MeuApp> {
 
   Future<void> fazerReqStarships(String x) async {
     var url = Uri.parse('https://swapi.dev/api/starships/${x}/');
-    var nome;
-    var modelo;
-    var tamanho;
-    var capacidade;
-    var nPassageiros;
+
     http.Response response;
     response = await http.get(url);
     if (response.statusCode == 200) {
@@ -190,5 +223,4 @@ class _MeuAppState extends State<MeuApp> {
       setState(() {});
     }
   }
-
 }
