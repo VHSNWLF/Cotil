@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
+import 'package:flutter_consumo_de_apis/model/tarefa.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -12,10 +13,13 @@ class MyRequisicao extends StatefulWidget {
 }
 
 class _MyRequisicaoState extends State<MyRequisicao> {
-  var userID;
+  
+  /* var userID;
   var taskID;
   var title;
-  var completed;
+  var completed; */
+  Tarefa minhaTaf = Tarefa();
+
   TextEditingController cont = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -67,10 +71,10 @@ class _MyRequisicaoState extends State<MyRequisicao> {
               SizedBox(
                 height: 20,
               ),
-              Text("ID do usuário: " + userID.toString()),
-              Text("ID da tarefa: " + taskID.toString()),
-              Text("Titulo da tarefa: " + title.toString()),
-              Text("Completa? " + completed.toString()),
+              Text("ID do usuário: " + minhaTaf.idUsuario.toString()),
+              Text("ID da tarefa: ${minhaTaf.idTarefa.toString()}"),
+              Text("Titulo da tarefa: ${minhaTaf.titulo.toString()}"),
+              Text("Completa? " + minhaTaf.completed.toString()),
             ],
           ),
         ),
@@ -84,10 +88,12 @@ class _MyRequisicaoState extends State<MyRequisicao> {
     response = await http.get(url);
     if (response.statusCode == 200) {
       Map<String, dynamic> dadosFormatados = jsonDecode(response.body);
-      userID = (dadosFormatados['userId']);
+      minhaTaf = Tarefa.fromJson(dadosFormatados);
+      
+      /* userID = (dadosFormatados['userId']);
       taskID = (dadosFormatados['id']);
       title = (dadosFormatados['title']);
-      completed = (dadosFormatados['completed']);
+      completed = (dadosFormatados['completed']); */
 
       setState(() {});
     }

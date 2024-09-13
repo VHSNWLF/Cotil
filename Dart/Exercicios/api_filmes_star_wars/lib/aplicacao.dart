@@ -46,7 +46,7 @@ class _MeuAppState extends State<MeuApp> {
       appBar: AppBar(
         title: Text(
           "Star Wars Movie's",
-          style: TextStyle(color: Colors.yellowAccent, fontSize: 40),
+          style: TextStyle(color: Colors.yellowAccent, fontSize: 40, fontFamily: 'StarWars'),
         ),
         backgroundColor: Colors.black,
         centerTitle: true,
@@ -145,13 +145,15 @@ class _MeuAppState extends State<MeuApp> {
                   atb3 = "Terreno: " + terreno.toString();
                   atb4 = "Diametro: " + diametro.toString();
                   atb5 = "População: " + populacao.toString();
-                } else {
+                } else if (opcao == "Nave") {
                   fazerReqStarships(cont.text);
                   atb1 = "Nome: " + nome.toString();
                   atb2 = "Modelo: " + modelo.toString();
                   atb3 = "Tamanho: " + tamanho.toString();
                   atb4 = "Capacidade: " + capacidade.toString();
                   atb5 = "Número de Passageiros: " + nPassageiros.toString();
+                } else{
+                  atb1 = 'Selecione uma opção [Pessoa/Planeta/Nave]';
                 }
                 setState(() {});
               },

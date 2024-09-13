@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_consumo_de_apis/requisicao.dart';
+import 'package:flutter_consumo_de_apis/views/requisicao.dart';
 
 void main() {
   runApp(const MyApp());
