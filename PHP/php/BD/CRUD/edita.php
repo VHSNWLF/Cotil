@@ -1,5 +1,7 @@
 <?php 
 
+    
+
     if(!isset($_GET['raAluno'])){
         echo "Selecione um aluno a ser editado!";
     }else {

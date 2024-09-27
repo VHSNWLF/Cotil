@@ -3,6 +3,8 @@ if($_SERVER['REQUEST_METHOD'] === "GET"){
     $msg = "";
 }
 else if($_SERVER['REQUEST_METHOD'] === "POST"){
+    //constante para o tam Max de arq. de foto
+    define('TAMANHO_MAXIMO', (2*1024*1024));
     $msg = "";
     
     try{
@@ -10,9 +12,29 @@ else if($_SERVER['REQUEST_METHOD'] === "POST"){
         $nome = $_POST['nome'];
         $curso = $_POST['curso'];
 
+        //upload dir
+        $uploadDir = "upload/fotos/";
+
+        //fotos
+        $foto = $_FILES['foto'];
+        $nomeFoto = $foto['name'];
+        $tipoFoto = $foto['type'];
+        $tamanhoFoto = $foto['size'];
+
+        //gerando novo nome para a foto
+        $info = new SplFileInfo($nomeFoto);
+        $extensaoArq = $info->getExtension(); 
+        $novoNomeFoto = $ra . "." . $extensaoArq;
+
         if((trim($ra) == "") || (trim($nome)) == ""){
             $msg = "<span id='warning'>RA e nome são obrigatórios!</span>";
-        }else{
+        }else if(($nomeFoto != "")&&(!preg_match('/^image\/(jpeg|png|gif)$/', $tipoFoto))){
+            echo "<span id='warning'>Imagem inválida</span>";
+        }
+        else if(($nomeFoto != "")&&($tamanhoFoto > TAMANHO_MAXIMO)){
+            $msg = "<span id='warning'>Arquivo muito grande, max 2MB!</span>";
+            }
+        else{
             include("conexaoBD.php");
             
             //Verificando se o RA ja existe no BD para não dar exceptions
@@ -83,7 +105,7 @@ else if($_SERVER['REQUEST_METHOD'] === "POST"){
     <a href="index.php">Home</a>
     <div>
     <h2>Cadastro de Alunos</h2>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label for="ra">RA</label>
         <input type="text" name="ra" id="ra" size="10">
         <label for="nome">Nome</label>
@@ -98,6 +120,8 @@ else if($_SERVER['REQUEST_METHOD'] === "POST"){
             <option value="Mecânica">Mecânica</option>
             <option value="Qualidade">Qualidade</option>
         </select> <br> <br>
+        <label for="imagem">Imagem</label>
+        <input type="file" name="imagem" id="imagem" accept="image/*">
         <input type="submit" value="Cadastrar">
         <?=$msg?>
     </form>
