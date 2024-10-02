@@ -25,9 +25,22 @@ if(!isset($_GET['raAluno'])){
     $ra = $_GET['raAluno'];
 
     try{
+        $stmt = $pdo->prepare('select arquivoFoto from alunos where ra = :ra');
+        $stmt->bindParam("ra", $ra);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        $arquivoFoto = $row['arquivoFoto'];
+
+
         $stmt = $pdo->prepare('delete from alunos where ra = :ra');
         $stmt->bindParam(':ra', $ra);
         $stmt->execute();
+
+        //removendo do disco o arquvivo correspondente
+        if ($arquivoFoto !=null){
+            unlink($arquivoFoto);
+        }
+
         echo $stmt->rowCount() ." aluno de RA $ra removido!";
     }catch(PDOException $e){
         echo "Error: ".$e->getMessage();
