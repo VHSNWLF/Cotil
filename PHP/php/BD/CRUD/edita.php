@@ -23,6 +23,7 @@
             while($row = $stmt->fetch()){
                 $nome = $row['nome'];
                 $curso = $row['curso'];
+                $foto = $row['arquivoFoto'];
 
                 //para setar o curso correto no comboBox
                 if ($row['curso'] == "Edificações"){
@@ -79,7 +80,14 @@
             <option value="Desenvolvimento de Sistemas" <?=$ds?> >Desenvolvimento de Sistemas</option>
             <option value="Mecânica" <?=$mecanica?> >Mecânica</option>
             <option value="Qualidade" <?=$qualidade?> >Qualidade</option>
-        </select> <br> <br>
+        </select> <br><br>
+
+        
+        <label for="foto">Foto:</label> <br>
+        <img src="<?=$foto?>" width="50px" alt="">
+        <br>
+        <input type="file" name="foto" id="foto">
+ <br> <br>
         <input type="submit" value="Salvar">
     </form>
 </body>

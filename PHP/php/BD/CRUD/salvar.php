@@ -25,10 +25,11 @@ include('conexaoBD.php');
     $novoCurso = $_POST['curso'];
 
     try{
-        $stmt = $pdo->prepare("update alunos set nome = :novoNome, curso = :novoCurso where ra = :ra");
+        $stmt = $pdo->prepare("update alunos set nome = :novoNome, curso = :novoCurso, arquivoFoto = : arquivoFoto where ra = :ra");
         $stmt->bindParam(':ra', $ra);
         $stmt->bindParam(':novoNome', $novoNome);
         $stmt->bindParam(':novoCurso', $novoCurso);
+        $stmt->bindParam(':novoCurso', $arquivoFoto);
         $stmt->execute();
 
         echo "Os dados do aluno de RA $ra foram alterados com sucesso!";
