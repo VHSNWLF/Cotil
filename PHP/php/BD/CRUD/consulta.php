@@ -42,6 +42,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         echo "<th>Nome</th>";
         echo "<th>Curso</th>";
         echo "<th colspan = 2></th>";
+        echo "<th>Foto</th>";
         echo "</tr>";
         
         //buscando dados
@@ -56,6 +57,12 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             echo "<td><a href = 'remove.php?raAluno=".$row['ra']."'><img src = 'assets/botao-apagar.png' width='32px' style='padding-left: 5px; padding-right: 5px;'></a></td>";
             //edita aluno
             echo "<td><a href = 'edita.php?raAluno=".$row['ra']."'><img src = 'assets/editar.png' width='32px' style='padding-left: 5px; padding-right: 5px;'></a></td>";
+            if($row["arquivoFoto"] == null){
+                echo "<td align='center'>-</td>";
+            }else{
+                echo "<td align='center'><img src=".$row['arquivoFoto']." width='50px'></td>";
+            }
+            echo "</tr>";
         }
         echo"</table>";
     }catch(PDOException $e){

@@ -27,7 +27,7 @@ else if($_SERVER['REQUEST_METHOD'] === "POST"){
         $novoNomeFoto = $ra . "." . $extensaoArq;
 
         if((trim($ra) == "") || (trim($nome)) == ""){
-            $msg = "<span id='warning'>RA e nome são obrigatórios!</span>";
+            $msg = "<span id='warning'>RA e Nome são obrigatórios!</span>";
         }else if(($nomeFoto != "")&&(!preg_match('/^image\/(jpeg|png|gif)$/', $tipoFoto))){
             echo "<span id='warning'>Imagem inválida</span>";
         }
@@ -45,13 +45,22 @@ else if($_SERVER['REQUEST_METHOD'] === "POST"){
             $rows = $stmt->rowCount();
 
             if($rows <=0){
-                $stmt = $pdo->prepare("insert into alunos (ra, nome, curso) values (:ra, :nome, :curso)");
+
+                if(($nomeFoto != "") && (move_uploaded_file($_FILES['foto']['tmp_name'], $uploadDir . $novoNomeFoto))){
+                    $uploadFile = $uploadDir . $novoNomeFoto; // caminho/nomeDaImagem
+                } else{
+                    $uploadFile = null;
+                    echo "Sem upload de imagem.";
+                }
+
+                $stmt = $pdo->prepare("insert into alunos (ra, nome, curso, arquivoFoto) values (:ra, :nome, :curso, :arquivoFoto)");
                 $stmt->bindParam(':ra', $ra);
                 $stmt->bindParam(':nome', $nome);
                 $stmt->bindParam(':curso', $curso);
+                $stmt->bindParam(':arquivoFoto', $uploadFile);
                 $stmt->execute();
 
-                $msg = "<span id='success'>Aluno Cadastrado ocm sucesso!</span>";
+                $msg = "<span id='success'>Aluno Cadastrado com sucesso!</span>";
             }else{
                 $msg = "<span id 'error'>Ra já existente no banco de dados!</span>";
             }
@@ -120,8 +129,8 @@ else if($_SERVER['REQUEST_METHOD'] === "POST"){
             <option value="Mecânica">Mecânica</option>
             <option value="Qualidade">Qualidade</option>
         </select> <br> <br>
-        <label for="imagem">Imagem</label>
-        <input type="file" name="imagem" id="imagem" accept="image/*">
+        <label for="foto">Imagem</label>
+        <input type="file" name="foto" id="foto" accept="image/*">
         <input type="submit" value="Cadastrar">
         <?=$msg?>
     </form>
